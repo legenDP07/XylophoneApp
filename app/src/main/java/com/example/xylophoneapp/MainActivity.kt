@@ -1,35 +1,38 @@
 package com.example.xylophoneapp
 
-import android.media.AudioAttributes
 import android.media.MediaPlayer
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
-    //var mediaPlayer = MediaPlayer.create(this, R.raw.xnote_g)
-    val myUri: Uri = Uri.parse("http://google.com")
-    val mediaPlayer = MediaPlayer().apply {
-        setAudioAttributes(
-            AudioAttributes.Builder()
-                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
-                .setUsage(AudioAttributes.USAGE_MEDIA)
-                .build()
-        )
-        setDataSource(applicationContext, myUri)
-        prepare()
-        start()
-    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val mediaPlayerG = MediaPlayer.create(this, R.raw.xnote_g)
+        val mediaPlayerA = MediaPlayer.create(this, R.raw.xnote_a)
+        val mediaPlayerB = MediaPlayer.create(this, R.raw.xnote_b)
+        val mediaPlayerD = MediaPlayer.create(this, R.raw.xnote_d1)
+        val mediaPlayerE = MediaPlayer.create(this, R.raw.xnote_e1)
+
         val noteG: Button = findViewById(R.id.note_g)
-        noteG.setOnClickListener { playSound(noteG)}
-    }
-    fun playSound(b: Button) {
+        noteG.setOnClickListener { mediaPlayerG.start() }
+
+        val noteA: Button = findViewById(R.id.note_a)
+        noteA.setOnClickListener { mediaPlayerA.start() }
+
+        val noteB: Button = findViewById(R.id.note_b)
+        noteB.setOnClickListener { mediaPlayerB.start() }
+
+        val noteD: Button = findViewById(R.id.note_d)
+        noteD.setOnClickListener { mediaPlayerD.start() }
+
+        val noteE: Button = findViewById(R.id.note_e)
+        noteE.setOnClickListener { mediaPlayerE.start() }
 
     }
 }
